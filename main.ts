@@ -110,6 +110,14 @@ namespace renewableEnergy {
     }
 
 
+    //% blockId=version
+    //% block="version"
+    //% group="House"
+    //% weight=20
+    export function version1() {
+    }
+
+
 
     // Globals
     let maxEnergy = 200
