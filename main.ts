@@ -30,6 +30,7 @@ namespace renewableEnergy {
         if (lrAngle > minAngle + servoMoveIncrement)
             lrAngle -= servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, lrAngle)
+        basic.pause(moveServoWaitTime)
     }
 
     //% blockId=panelMoveRight
@@ -40,6 +41,7 @@ namespace renewableEnergy {
         if (lrAngle < maxAngle-servoMoveIncrement)
             lrAngle += servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, lrAngle)
+        basic.pause(moveServoWaitTime)
     }
 
     //% blockId=panelMoveUp
@@ -50,6 +52,7 @@ namespace renewableEnergy {
         if (udAngle > minAngle + servoMoveIncrement)
             udAngle -= servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, udAngle)
+        basic.pause(moveServoWaitTime)
     }
 
     //% blockId=panelMoveDown
@@ -60,21 +63,53 @@ namespace renewableEnergy {
         if (udAngle < maxAngle-servoMoveIncrement)
             udAngle += servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, udAngle)
+        basic.pause(moveServoWaitTime)
     }
 
-    //% blockId=useEnergy
-    //% block="user energy for device %deviceName on pin %pin"
+    //% blockId=setServoIncrement
+    //% block="set servo move amount %amount"
+    //% group="Power Station"
+    export function setServoIncrement(amount: number) {
+        servoMoveIncrement = amount
+    }
+
+    //% blockId=clearDevices
+    //% block="clear devices"
     //% group="House"
-    export function useEnergy(pin: AnalogPin, deviceName: string) {
-        
+    //% weight=50
+    export function clearDevices() {
+        serial.writeLine("clear")
     }
 
     //% blockId=addDevice
     //% block="add device %name using power %power"
     //% group="House"
-    export function addDevice (name: string, power: number) {
-        
+    //% weight=40
+    export function addDevice(name: string, power: number) {
+        serial.writeLine(name + "=" + power)
     }
+
+    //% blockId=ready
+    //% block="ready"
+    //% group="House"
+    //% weight=30
+    export function ready() {
+        serial.writeLine("ready")
+    }
+
+
+    //% blockId=useEnergy
+    //% block="user energy for device %deviceName on pin %pin"
+    //% group="House"
+    //% weight=20
+    export function useEnergy(pin: DigitalPin, deviceName: string) {
+        serial.writeLine("get=" + deviceName)
+        let message = serial.readLine()
+        let deviceOn = parseInt(message)
+        pins.digitalWritePin(pin, deviceOn)
+    }
+
+
 
     // Globals
     let maxEnergy = 200
@@ -86,4 +121,7 @@ namespace renewableEnergy {
     let servoMoveIncrement = 20     // amount to move servo 
 
     let sendEnergyWaitTime = 1000       // time to wait after sending energy, so we don't send too much
+    let moveServoWaitTime = 500         // time to wait after moving a servo
+
+    serial.setBaudRate(BaudRate.BaudRate9600)
 }
