@@ -99,10 +99,10 @@ namespace renewableEnergy {
 
 
     //% blockId=useEnergy
-    //% block="user energy for device %deviceName on pin %pin"
+    //% block="use energy for device %deviceName on pin %pin"
     //% group="House"
     //% weight=20
-    export function useEnergy(pin: DigitalPin, deviceName: string) {
+    export function useEnergy(deviceName: string, pin: DigitalPin)  {
         serial.writeLine("get=" + deviceName)
         let message = serial.readLine()
         let deviceOn = parseInt(message)
