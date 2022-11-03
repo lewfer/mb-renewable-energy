@@ -19,6 +19,7 @@ namespace renewableEnergy {
     //% weight=40
     export function sendEnergy (wind: number, solar: number) {
         serial.writeLine("#" + wind + "," + solar + "," + (wind + solar) + ".")
+        basic.pause(sendEnergyWaitTime)
     }
 
     //% blockId=panelMoveLeft
@@ -83,4 +84,6 @@ namespace renewableEnergy {
     let minAngle = 0                // min allowed angle for servo
     let maxAngle = 180              // max allowed angle for servo
     let servoMoveIncrement = 20     // amount to move servo 
+
+    let sendEnergyWaitTime = 1000       // time to wait after sending energy, so we don't send too much
 }
