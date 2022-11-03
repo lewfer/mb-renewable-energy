@@ -1,3 +1,4 @@
+//% color="#ff7f50" icon="\uf2f1" block="Energy"
 namespace renewableEnergy {
 
     //% blockId=getEnergy
