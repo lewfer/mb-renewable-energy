@@ -26,7 +26,7 @@ namespace renewableEnergy {
     //% group="Power Station"
     //% weight=30
     export function panelMoveLeft() {
-        if (lrAngle > servoMoveIncrement)
+        if (lrAngle > minAngle + servoMoveIncrement)
             lrAngle -= servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, lrAngle)
     }
@@ -36,7 +36,7 @@ namespace renewableEnergy {
     //% group="Power Station"
     //% weight=29
     export function panelMoveRight() {
-        if (lrAngle < 180-servoMoveIncrement)
+        if (lrAngle < maxAngle-servoMoveIncrement)
             lrAngle += servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, lrAngle)
     }
@@ -46,7 +46,7 @@ namespace renewableEnergy {
     //% group="Power Station"
     //% weight=28
     export function panelMoveUp() {
-        if (udAngle > servoMoveIncrement)
+        if (udAngle > minAngle + servoMoveIncrement)
             udAngle -= servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, udAngle)
     }
@@ -56,7 +56,7 @@ namespace renewableEnergy {
     //% group="Power Station"
     //% weight=27
     export function panelMoveDown() {
-        if (udAngle < 180-servoMoveIncrement)
+        if (udAngle < maxAngle-servoMoveIncrement)
             udAngle += servoMoveIncrement
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, udAngle)
     }
@@ -77,7 +77,10 @@ namespace renewableEnergy {
 
     // Globals
     let maxEnergy = 200
-    let lrAngle = 90
-    let udAngle = 90
-    let servoMoveIncrement = 20
+
+    let lrAngle = 90                // current angle for left-right servo
+    let udAngle = 90                // current angle for up-down servro
+    let minAngle = 0                // min allowed angle for servo
+    let maxAngle = 180              // max allowed angle for servo
+    let servoMoveIncrement = 20     // amount to move servo 
 }
