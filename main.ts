@@ -110,7 +110,7 @@ namespace renewableEnergy {
     }
 
     //% blockId=checkEnergy
-    //% block="chec energy for device %deviceName"
+    //% block="check energy for device %deviceName"
     //% group="House"
     //% weight=19
     export function checkEnergy(deviceName: string)  {
