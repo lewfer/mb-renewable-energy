@@ -109,12 +109,24 @@ namespace renewableEnergy {
         pins.digitalWritePin(pin, deviceOn)
     }
 
+    //% blockId=checkEnergy
+    //% block="chec energy for device %deviceName"
+    //% group="House"
+    //% weight=19
+    export function checkEnergy(deviceName: string)  {
+        serial.writeLine("get=" + deviceName)
+        let message = serial.readLine()
+        let deviceOn = parseInt(message)
+        return deviceOn
+    }
+
+
 
     //% blockId=version
-    //% block="version2"
+    //% block="version3"
     //% group="House"
     //% weight=18
-    export function version2() {
+    export function version3() {
     }
 
 
