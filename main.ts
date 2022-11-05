@@ -123,7 +123,7 @@ namespace renewableEnergy {
 
 
     //% blockId=version
-    //% block="version"
+    //% block="version2"
     //% group="House"
     //% weight=20
     export function version2() {
