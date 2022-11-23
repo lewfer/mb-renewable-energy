@@ -23,45 +23,45 @@ namespace renewableEnergy {
     }
 
     //% blockId=panelMoveLeft
-    //% block="panel move left"    
+    //% block="panel move left %steps steps"    
     //% group="Power Station"
     //% weight=30
-    export function panelMoveLeft() {
-        if (lrAngle > minAngle + servoMoveIncrement)
-            lrAngle -= servoMoveIncrement
+    export function panelMoveLeft(steps : number) {
+        if (lrAngle > minAngle + servoMoveIncrement * steps)
+            lrAngle -= servoMoveIncrement * steps
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, lrAngle)
         basic.pause(moveServoWaitTime)
     }
 
     //% blockId=panelMoveRight
-    //% block="panel move right"    
+    //% block="panel move right %steps steps"    
     //% group="Power Station"
     //% weight=29
-    export function panelMoveRight() {
-        if (lrAngle < maxAngle-servoMoveIncrement)
-            lrAngle += servoMoveIncrement
+    export function panelMoveRight(steps: number) {
+        if (lrAngle < maxAngle - servoMoveIncrement * steps)
+            lrAngle += servoMoveIncrement * steps
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, lrAngle)
         basic.pause(moveServoWaitTime)
     }
 
     //% blockId=panelMoveUp
-    //% block="panel move up"    
+    //% block="panel move up %steps steps"
     //% group="Power Station"
     //% weight=28
-    export function panelMoveUp() {
-        if (udAngle > minAngle + servoMoveIncrement)
-            udAngle -= servoMoveIncrement
+    export function panelMoveUp(steps: number) {
+        if (udAngle > minAngle + servoMoveIncrement * steps)
+            udAngle -= servoMoveIncrement * steps
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, udAngle)
         basic.pause(moveServoWaitTime)
     }
 
     //% blockId=panelMoveDown
-    //% block="panel move down"    
+    //% block="panel move down %steps steps"
     //% group="Power Station"
     //% weight=27
-    export function panelMoveDown() {
-        if (udAngle < maxAngle-servoMoveIncrement)
-            udAngle += servoMoveIncrement
+    export function panelMoveDown(steps: number) {
+        if (udAngle < maxAngle - servoMoveIncrement * steps)
+            udAngle += servoMoveIncrement * steps
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, udAngle)
         basic.pause(moveServoWaitTime)
     }
