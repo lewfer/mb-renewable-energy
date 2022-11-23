@@ -9,7 +9,7 @@ namespace renewableEnergy {
         let energy 
         energy = pins.analogReadPin(pin)
         if (energy>maxEnergy)
-            energy = 200
+            energy = 0
         return energy
     }
 
@@ -123,16 +123,53 @@ namespace renewableEnergy {
 
 
     //% blockId=version
-    //% block="version3"
+    //% block="version4"
     //% group="House"
     //% weight=18
-    export function version3() {
+    export function version5() {
     }
 
 
+    //% blockId=initialise
+    //% block="initialise"
+    //% group="Both"
+    //% weight=50
+    export function initialise() {
+        serial.setBaudRate(BaudRate.BaudRate9600)
+        led.enable(false)
+        pins.setPull(DigitalPin.P0, PinPullMode.PullDown)
+        pins.setPull(DigitalPin.P1, PinPullMode.PullDown)
+        pins.setPull(DigitalPin.P2, PinPullMode.PullDown)
+        pins.setPull(DigitalPin.P3, PinPullMode.PullDown)
+    }
+
+    //% blockId=setMaxEnergy
+    //% block="set max energy %energy"
+    //% energy.min=0 col.energy=1023
+    //% group="Both"
+    //% weight=40
+    export function setMaxEnergy(energy: number) {
+        maxEnergy = energy
+    }
+
+    //% blockId=setSendEnergyWaitTime
+    //% block="set send energy wait time %time"
+    //% group="Both"
+    //% weight=30
+    export function setSendEnergyWaitTime(time: number) {
+        sendEnergyWaitTime = time
+    }
+
+    //% blockId=setMoveServoWaitTime
+    //% block="set move servo wait time %time"
+    //% group="Both"
+    //% weight=30
+    export function setMoveServoWaitTime(time: number) {
+        moveServoWaitTime = time
+    }
 
     // Globals
-    let maxEnergy = 200
+    let maxEnergy = 1023
 
     let lrAngle = 90                // current angle for left-right servo
     let udAngle = 90                // current angle for up-down servro
