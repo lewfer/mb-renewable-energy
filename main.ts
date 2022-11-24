@@ -121,15 +121,6 @@ namespace renewableEnergy {
     }
 
 
-
-    //% blockId=version
-    //% block="version4"
-    //% group="House"
-    //% weight=18
-    export function version5() {
-    }
-
-
     //% blockId=initialise
     //% block="initialise"
     //% group="Both"
@@ -163,22 +154,41 @@ namespace renewableEnergy {
     //% blockId=setMoveServoWaitTime
     //% block="set move servo wait time %time"
     //% group="Both"
-    //% weight=30
+    //% weight=20
     export function setMoveServoWaitTime(time: number) {
         moveServoWaitTime = time
     }
+
+    //% blockId=servoMoveIncrement
+    //% block="set servo move increment %angle"
+    //% group="Both"
+    //% weight=10
+    export function setServoMoveIncrement(angle: number) {
+        servoMoveIncrement = angle
+    }
+
+
+    //% blockId=version
+    //% block="version5"
+    //% group="Both"
+    //% weight=1
+    export function version5() {
+    }
+
+
+
 
     // Globals
     let maxEnergy = 1023
 
     let lrAngle = 90                // current angle for left-right servo
     let udAngle = 90                // current angle for up-down servro
-    let minAngle = 0                // min allowed angle for servo
-    let maxAngle = 180              // max allowed angle for servo
-    let servoMoveIncrement = 20     // amount to move servo 
+    let minAngle = 20               // min allowed angle for servo
+    let maxAngle = 160              // max allowed angle for servo
+    let servoMoveIncrement = 10     // amount to move servo 
 
     let sendEnergyWaitTime = 1000       // time to wait after sending energy, so we don't send too much
-    let moveServoWaitTime = 500         // time to wait after moving a servo
+    let moveServoWaitTime = 300         // time to wait after moving a servo
 
     serial.setBaudRate(BaudRate.BaudRate9600)
 }
