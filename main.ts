@@ -87,6 +87,7 @@ namespace renewableEnergy {
     //% weight=40
     export function addDevice(name: string, power: number) {
         serial.writeLine(name + "=" + power)
+        devices[name] = 0
     }
 
     //% blockId=ready
@@ -116,8 +117,10 @@ namespace renewableEnergy {
     export function checkEnergy(deviceName: string)  {
         serial.writeLine("get=" + deviceName)
         let message = serial.readLine()
-        let deviceOn = parseInt(message)
-        return deviceOn
+        //let deviceOn = parseInt(message)
+        const arr = message.split("=");
+        devices[arr[0]] = parseInt(arr[1])
+        return devices[arr[0]]
     }
 
 
@@ -169,10 +172,10 @@ namespace renewableEnergy {
 
 
     //% blockId=version
-    //% block="version5"
+    //% block="version6"
     //% group="Both"
     //% weight=1
-    export function version5() {
+    export function version6() {
     }
 
 
@@ -191,4 +194,6 @@ namespace renewableEnergy {
     let moveServoWaitTime = 300         // time to wait after moving a servo
 
     serial.setBaudRate(BaudRate.BaudRate9600)
+
+    let devices: { [id: string] : number;} = {};
 }
