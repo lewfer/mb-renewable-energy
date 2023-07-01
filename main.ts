@@ -120,7 +120,7 @@ namespace renewableEnergy {
         //let deviceOn = parseInt(message)
         const arr = message.split("=");
         devices[arr[0]] = parseInt(arr[1])
-        return devices[arr[0]]
+        return devices[deviceName]
     }
 
 
@@ -175,7 +175,7 @@ namespace renewableEnergy {
     //% block="version6"
     //% group="Both"
     //% weight=1
-    export function version6() {
+    export function version7() {
     }
 
 
