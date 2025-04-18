@@ -1,5 +1,5 @@
 {
-    "name": "microbit-renewable-energy",
+    "name": "GIC Renewable Energy Extension",
     "description": "",
     "dependencies": {
         "core": "*",
